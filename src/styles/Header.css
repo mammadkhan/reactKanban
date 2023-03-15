@@ -1,0 +1,99 @@
+.header {
+  background-color: var(--color-main);
+  border-bottom: 1px solid var(--color-borderLine);
+  display: flex;
+  align-items: center;
+}
+
+.header a {
+  border-right: 1px solid var(--color-borderLine);
+  padding: 2rem 6rem 2rem 2rem;
+}
+
+/*---------HEADER RIGHT SECTION------*/
+
+.header_right {
+  padding: 0rem 2rem;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.header_right_right {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.board_title {
+  color: var(--color-title);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.mobile_board_selector {
+  display: none;
+  align-items: center;
+  border: none;
+  outline: none;
+  color: var(--color-title);
+  font-size: 1.5rem;
+  font-weight: 600;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.mobile_board_selector svg {
+  fill: var(--color-primary);
+}
+
+.add_new_task {
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: 2rem;
+  outline: none;
+  fill: white;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 150ms ease-in-out;
+}
+
+.add_new_task_text {
+  color: var(--color-title);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.add_new_task_svg {
+  width: 20px;
+  height: 20px;
+}
+
+.add_new_task:hover {
+  background-color: #a8a4ff;
+}
+
+.more {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  width: 20px;
+  border-radius: 0.5rem;
+  align-items: center;
+  transition: background-color 150ms ease-in-out;
+}
+
+.more:hover {
+  background-color: var(--color-ellipsis-hover);
+}
+
+.more_svg {
+  transform: scale(1.4);
+  fill: var(--color-ellipsis);
+}

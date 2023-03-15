@@ -1,0 +1,8 @@
+.side_menu {
+  width: 6rem;
+  height: 100%;
+  border: 1px solid var(--color-borderLine);
+  border-top: none;
+  background-color: var(--color-main);
+  min-width: 17.65rem;
+}
