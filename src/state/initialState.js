@@ -4,6 +4,7 @@ const initialState = {
         columns:{
             "NOW":{
                 id:0,
+                color:'#A98307',
                 cards:[
                     {
                         id:0,
@@ -26,14 +27,12 @@ const initialState = {
                                 done:false,
                             }
                         ],
-                        getCompletedTasks:function(){
-                            return this.subtasks.filter((task)=>task.done).length
-                        }
-                    }
+                    },
                 ]
             },
             "LATER":{
                 id:1,
+                color:'#316650',
                 cards:[
                     {
                         id:0,
@@ -51,9 +50,6 @@ const initialState = {
                                 done:false,
                             }
                         ],
-                        getCompletedTasks:function(){
-                            return this.subtasks.filter((task)=>task.done).length
-                        }
                     }
                 ]
             }
@@ -64,6 +60,7 @@ const initialState = {
         columns:{
             "TODO":{
                 id:0,
+                color:'#C7B446',
                 cards:[
                     {
                         id:0,
@@ -101,14 +98,12 @@ const initialState = {
                                 done:false,
                             }
                         ],
-                        getCompletedTasks:function(){
-                            return this.subtasks.filter((task)=>task.done).length
-                        }
                     }
                 ]
             },
             "DOING":{
                 id:1,
+                color:'#474A51',
                 cards:[
                     {
                         id:0,
@@ -131,50 +126,22 @@ const initialState = {
                                 done:false,
                             }
                         ],
-                        getCompletedTasks:function(){
-                            return this.subtasks.filter((task)=>task.done).length
-                        }
                     }
                 ]
             },
             "FINISH":{
                 id:2,
-                cards:[
-                    {
-                        id:0,
-                        title:"Write launch article to publish on multiple channels",
-                        description:"No description",
-                        subtasks:[
-                            {
-                                id:0,
-                                title:"Write article",
-                                done:false,
-                            },
-                            {
-                                id:1,
-                                title:"Publish on LinkedIn",
-                                done:false,
-                            },
-                            {
-                                id:2,
-                                title:"Publish on Inndie Hackers",
-                                done:false,
-                            },
-                            {
-                                id:3,
-                                title:"Publish on Medium",
-                                done:false,
-                            }
-                        ],
-                        getCompletedTasks:function(){
-                            return this.subtasks.filter((task)=>task.done).length
-                        }
-                    }
-                ]
+                color:'#231A24',
+                cards:[]
             }
         }
     },
-    selected:"Roadmap"
 }
+
+Object.defineProperty(initialState,'selected',{
+    value:"Roadmap",
+    writable:true,
+    enumerable:false,
+})
 
 export default initialState

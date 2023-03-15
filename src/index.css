@@ -17,9 +17,14 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
+:root {
+  --color-primary: #635fc7;
+  --color-primary-hover: #a8a4ff;
+  --color-gray: #828fa3;
+}
+
 .dark {
   --color-bg: #20212c;
-  --color-primary: #635fc7;
   --color-scroll: #3e3f4e;
   --color-borderLine: #3e3f4e;
   --color-main: #2b2c37;
@@ -28,14 +33,12 @@ body {
   --color-board: #20212c;
   --color-themeSwitchBox: #20212c;
   --color-addButton: #ffffff;
-  --color-ellipsis: #828fa3;
-  --color-ellipsis-hover: #20212c;
+  --color-ellipsis: #20212c;
   --color-checked: rgba(255, 255, 255, 0.5);
 }
 
 .light {
   --color-bg: #f4f7fd;
-  --color-primary: #635fc7;
   --color-scroll: #828fa3;
   --color-borderLine: #e4ebfa;
   --color-main: #ffffff;
@@ -44,7 +47,6 @@ body {
   --color-board: #ffffff;
   --color-themeSwitchBox: #f4f7fd;
   --color-addButton: #f0effa;
-  --color-ellipsis: #828fa3;
-  --color-ellipsis-hover: #e4ebfa;
+  --color-ellipsis: #e4ebfa;
   --color-checked: rgba(0, 0, 0, 0.5);
 }

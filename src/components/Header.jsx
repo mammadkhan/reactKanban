@@ -18,8 +18,8 @@ const Header = () => {
             <h1 className='board_title'>{board.selected}</h1>
             <button className='mobile_board_selector'>Roadmap<Down/></button>
             <div className='header_right_right'>
-                <button className='add_new_task'><Add className="add_new_task_svg"/><span className='add_new_task_text'>Add New Task</span></button>
-                <button className='more'><More className="more_svg" /></button>
+                <button className='add_new_task'><Add style={{width:"1.1rem", height:"1.1rem"}}/><span className='add_new_task_text'>Add New Task</span></button>
+                <button className='more'><More style={{transform:"scale(1.4)", fill:"var(--color-gray)"}}/></button>
             </div>
         </div>
     </header>

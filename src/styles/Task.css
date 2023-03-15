@@ -1,0 +1,21 @@
+.task {
+  padding: 1rem;
+  color: var(--color-title);
+  border: 1px solid var(--color-borderLine);
+  border-radius: 0.5rem;
+  background-color: var(--color-main);
+  min-height: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.task_title {
+  font-size: 1rem;
+}
+
+.subtask_status {
+  font-size: 0.8rem;
+  color: var(--color-gray);
+}

@@ -1,0 +1,33 @@
+.board {
+  position: absolute;
+  left: 17.65rem;
+  top: 6rem;
+  display: flex;
+  gap: 2rem;
+  height: calc(100% - 6rem);
+  padding: 2rem;
+}
+
+.new_column {
+  min-height: calc(100% - 1.2rem);
+  width: 18rem;
+  color: var(--color-gray);
+  border-radius: 0.5rem;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  background-image: linear-gradient(
+    to top,
+    #20212c,
+    #23242f,
+    #252631,
+    #282934,
+    #2b2c37
+  );
+  cursor: pointer;
+  margin-top: 2.1875rem;
+}

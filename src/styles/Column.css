@@ -1,0 +1,28 @@
+.column {
+  min-height: calc(100% - 1.2rem);
+  width: 18rem;
+  border-radius: 0.5rem;
+}
+
+.empty_column {
+  border-radius: 0.5rem;
+  border: 2px dashed var(--color-borderLine);
+  min-height: calc(100% - 1.2rem);
+  width: 18rem;
+}
+
+.column_title {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 400;
+  gap: 0.5rem;
+  color: var(--color-gray);
+  padding-bottom: 1rem;
+}
+
+.title_dot {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+}

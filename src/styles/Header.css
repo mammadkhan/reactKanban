@@ -3,6 +3,7 @@
   border-bottom: 1px solid var(--color-borderLine);
   display: flex;
   align-items: center;
+  min-height: 6rem;
 }
 
 .header a {
@@ -68,13 +69,8 @@
   font-weight: 600;
 }
 
-.add_new_task_svg {
-  width: 20px;
-  height: 20px;
-}
-
 .add_new_task:hover {
-  background-color: #a8a4ff;
+  background-color: var(--color-primary-hover);
 }
 
 .more {
@@ -83,17 +79,12 @@
   background-color: transparent;
   cursor: pointer;
   display: flex;
-  width: 20px;
+  width: 1.1rem;
   border-radius: 0.5rem;
   align-items: center;
   transition: background-color 150ms ease-in-out;
 }
 
 .more:hover {
-  background-color: var(--color-ellipsis-hover);
-}
-
-.more_svg {
-  transform: scale(1.4);
-  fill: var(--color-ellipsis);
+  background-color: var(--color-ellipsis);
 }
