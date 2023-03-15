@@ -1,0 +1,137 @@
+.add_task_modal_container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.add_task_modal {
+  color: var(--color-subTitle);
+  background-color: var(--color-main);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 28rem;
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.modal_title {
+  color: var(--color-title);
+}
+
+.add_task_modal label {
+  font-size: 0.8rem;
+}
+
+.modal_input {
+  margin-top: 0.5rem;
+  display: block;
+  width: 100%;
+  background-color: transparent;
+  border: 2px solid var(--color-borderLine);
+  border-radius: 0.2rem;
+  color: var(--color-title);
+  padding: 0.5rem 1rem;
+  outline: none;
+}
+
+.modal_input:focus {
+  border: 2px solid var(--color-primary);
+}
+
+#description {
+  resize: none;
+  min-height: 6rem;
+}
+
+.subtasks_container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.delete_subtask {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: var(--color-gray);
+  cursor: pointer;
+}
+
+.add_new_subtask {
+  margin-top: 1rem;
+  border: none;
+  outline: none;
+  background-color: var(--color-addButton);
+  width: 100%;
+  color: var(--color-primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+.status_container {
+  position: relative;
+}
+
+#status_dropdown {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+  cursor: pointer;
+}
+
+#status_dropdown svg {
+  color: var(--color-primary);
+}
+
+.status_dropdown_container {
+  position: absolute;
+  top: 4.5rem;
+  left: 0;
+  width: 100%;
+  background-color: var(--color-bg);
+  border-radius: 0.2rem;
+  padding: 1rem;
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  user-select: none;
+}
+
+.status_dropdown_container_button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: var(--color-title);
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  padding: 0.2rem 0rem;
+}
+
+.create_task_button {
+  background-color: var(--color-primary);
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  padding: 0.6rem;
+  border-radius: 1.5rem;
+}

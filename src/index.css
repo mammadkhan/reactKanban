@@ -22,6 +22,7 @@ body {
   --color-primary: #635fc7;
   --color-primary-hover: #a8a4ff;
   --color-gray: #828fa3;
+  --color-warning: #ea5555;
 }
 
 .dark {

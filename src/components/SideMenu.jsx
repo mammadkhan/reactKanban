@@ -19,11 +19,11 @@ const SideMenu = () => {
       <div className='side_menu_top'>
         <h3 className='side_menu_title'>ALL BOARDS	&#40; {Object.entries(board).length} &#41;</h3>
         <ul>
-          {board.map((board,index)=>(
+          {board.data.map((tboard,index)=>(
             <li key={index}>
-              <button  className={'side_menu_boards' + (board.title===board[board.selected].title ? ' board_selected' : "")} onClick={(e)=>dispatch(changeSelected(board))}>
+              <button  className={'side_menu_boards' + (tboard.title===board.data[board.selected].title ? ' board_selected' : "")} onClick={(e)=>dispatch(changeSelected(tboard))}>
                 <BoardIcon />
-                {title}
+                {tboard.title}
               </button>
             </li>
           ))}

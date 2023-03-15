@@ -17,7 +17,7 @@ const Board = () => {
   return (
     <DragDropContext onDragEnd={(e)=>{dispatch(reorder(e))}}>
         <main className={'board' + (ui.sideMenuOpen ? "" : " board_wide")}>
-            {board[board.selected].columns.map(column=>(
+            {board.data[board.selected].columns.map(column=>(
                 <Column key={column.id} column={column} />
             ))}
             <button className='new_column'>

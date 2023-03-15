@@ -10,9 +10,7 @@ export const boardSlice = createSlice({
             console.log(destination,source);
         },
         changeSelected:(state,action)=>{
-            const index = state.indexOf(action.payload)
-            console.log(index)
-            // state.selected = action.payload
+            state.selected = state.data.map(board=>board.id).indexOf(action.payload.id)
         }        
     }
 })

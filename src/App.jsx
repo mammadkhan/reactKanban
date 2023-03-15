@@ -8,6 +8,7 @@ import SideMenu from './components/SideMenu'
 
 import {ReactComponent as Show} from './assets/show.svg'
 import { toggleSideMenu } from './state/ui'
+import AddTaskModal from './components/AddTaskModal'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -19,6 +20,8 @@ const App = () => {
       <SideMenu/>
       {!ui.sideMenuOpen && <button className='show_side_menu' onClick={()=>dispatch(toggleSideMenu())}><Show /></button>}
       <Board/>
+      <AddTaskModal/>
+      {/* <Modal /> TODO CREATE PARENT MODAL COMP FOR ALL MODAL AND STORE STATES IN UI SLICE */}
     </div>
   )
 }
