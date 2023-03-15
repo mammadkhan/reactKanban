@@ -15,6 +15,7 @@ html,
 
 body {
   font-family: "Montserrat", sans-serif;
+  overflow: hidden;
 }
 
 :root {
@@ -26,6 +27,7 @@ body {
 .dark {
   --color-bg: #20212c;
   --color-scroll: #3e3f4e;
+  --color-scroll-background: #16171f;
   --color-borderLine: #3e3f4e;
   --color-main: #2b2c37;
   --color-title: #ffffff;
@@ -40,6 +42,7 @@ body {
 .light {
   --color-bg: #f4f7fd;
   --color-scroll: #828fa3;
+  --color-scroll-background: #aaacb1;
   --color-borderLine: #e4ebfa;
   --color-main: #ffffff;
   --color-title: #000000;

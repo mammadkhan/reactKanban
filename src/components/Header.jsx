@@ -15,7 +15,7 @@ const Header = () => {
     <header className='header'>
         <a href="/"><LogoDesktop /></a>
         <div className='header_right'>
-            <h1 className='board_title'>{board.selected}</h1>
+            <h1 className='board_title'>{board[board.selected].title}</h1>
             <button className='mobile_board_selector'>Roadmap<Down/></button>
             <div className='header_right_right'>
                 <button className='add_new_task'><Add style={{width:"1.1rem", height:"1.1rem"}}/><span className='add_new_task_text'>Add New Task</span></button>

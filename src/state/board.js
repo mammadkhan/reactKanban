@@ -5,13 +5,18 @@ export const boardSlice = createSlice({
     name:'board',
     initialState,
     reducers:{
-        changeSelected(state,action){
-            console.log(state.selected,action.payload)
-            state.selected = action.payload
+        reorder:(state,action)=>{
+            const {destination, source} = action.payload;
+            console.log(destination,source);
+        },
+        changeSelected:(state,action)=>{
+            const index = state.indexOf(action.payload)
+            console.log(index)
+            // state.selected = action.payload
         }        
     }
 })
 
-export const {changeSelected} = boardSlice.actions
+export const {reorder,changeSelected} = boardSlice.actions
 
 export default boardSlice.reducer
