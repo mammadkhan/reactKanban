@@ -27,12 +27,16 @@
   color: var(--color-title);
 }
 
-.add_task_modal label {
+.modal_section_container {
+  position: relative;
+}
+
+.section_title {
   font-size: 0.8rem;
+  margin-bottom: 0.5rem;
 }
 
 .modal_input {
-  margin-top: 0.5rem;
   display: block;
   width: 100%;
   background-color: transparent;
@@ -41,6 +45,10 @@
   color: var(--color-title);
   padding: 0.5rem 1rem;
   outline: none;
+}
+
+.modal_input_warning {
+  border-color: var(--color-warning);
 }
 
 .modal_input:focus {
@@ -52,10 +60,17 @@
   min-height: 6rem;
 }
 
+.subtasks_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .subtasks_container {
   display: flex;
   align-items: center;
   gap: 1rem;
+  position: relative;
 }
 
 .delete_subtask {
@@ -64,10 +79,10 @@
   outline: none;
   color: var(--color-gray);
   cursor: pointer;
+  height: 30px;
 }
 
 .add_new_subtask {
-  margin-top: 1rem;
   border: none;
   outline: none;
   background-color: var(--color-addButton);
@@ -81,10 +96,6 @@
   height: 2rem;
   border-radius: 1rem;
   cursor: pointer;
-}
-
-.status_container {
-  position: relative;
 }
 
 #status_dropdown {
@@ -134,4 +145,18 @@
   color: #fff;
   padding: 0.6rem;
   border-radius: 1.5rem;
+  cursor: pointer;
+}
+
+.modal_warning {
+  font-size: 0.8rem;
+  position: absolute;
+  top: 2rem;
+  right: 1rem;
+  color: var(--color-warning);
+}
+
+.subtask_warning {
+  top: 0.5rem;
+  right: 3.9rem;
 }
