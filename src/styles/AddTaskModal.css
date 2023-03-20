@@ -10,6 +10,15 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+@keyframes fade {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
 .add_task_modal {
   color: var(--color-subTitle);
   background-color: var(--color-main);
@@ -21,10 +30,24 @@
   max-width: 28rem;
   border-radius: 1rem;
   padding: 2rem;
+  animation: fade 300ms ease-in-out;
+}
+
+.modal_top {
+  display: flex;
+  justify-content: space-between;
 }
 
 .modal_title {
   color: var(--color-title);
+}
+
+.modal_close {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: white;
+  cursor: pointer;
 }
 
 .modal_section_container {
