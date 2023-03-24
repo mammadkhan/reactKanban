@@ -1,14 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
+import { toggleSideMenu } from "./state/ui";
 
 import "./App.css";
 
 import Header from "./components/Header";
 import Board from "./components/Board";
 import SideMenu from "./components/SideMenu";
+import AddTaskModal from "./components/AddTaskModal";
+import TaskModal from "./components/TaskModal";
+import DeleteTaskModal from "./components/DeleteTaskModal";
 
 import { ReactComponent as Show } from "./assets/show.svg";
-import { toggleSideMenu } from "./state/ui";
-import AddTaskModal from "./components/AddTaskModal";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -28,6 +30,12 @@ const App = () => {
       )}
       <Board />
       {ui.addNewTaskModal && <AddTaskModal />}
+      {ui.taskModal.open ? (
+        <TaskModal />
+      ) : ui.taskModal.taskId ? (
+        <AddTaskModal />
+      ) : null}
+      {ui.deleteTaskModal && <DeleteTaskModal />}
     </div>
   );
 };

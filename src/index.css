@@ -38,6 +38,7 @@ body {
   --color-addButton: #ffffff;
   --color-ellipsis: #20212c;
   --color-checked: rgba(255, 255, 255, 0.5);
+  --color-checkbox-hover: rgba(168, 164, 255, 0.3);
 }
 
 .light {
@@ -53,4 +54,5 @@ body {
   --color-addButton: #f0effa;
   --color-ellipsis: #e4ebfa;
   --color-checked: rgba(0, 0, 0, 0.5);
+  --color-checkbox-hover: rgba(216, 215, 241, 0.3);
 }

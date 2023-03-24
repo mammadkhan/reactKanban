@@ -1,0 +1,73 @@
+.delete_task_modal_container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+.delete_task_modal {
+  background-color: var(--color-main);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 28rem;
+  border-radius: 1rem;
+  padding: 2rem;
+  animation: fade 300ms ease-in-out;
+}
+
+.delete_task_modal_title {
+  color: var(--color-warning);
+}
+
+.delete_task_modal_text {
+  font-size: 0.8rem;
+  color: var(--color-gray);
+}
+
+.delete_task_modal_buttons_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.delete_task_modal_buttons_container button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0.6rem 4.5rem;
+  font-weight: 600;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: opacity 150ms ease-in-out;
+}
+.delete_task_modal_buttons_container button:hover {
+  opacity: 0.6;
+}
+
+#delete_button {
+  color: white;
+  background-color: var(--color-warning);
+}
+
+#cancel_button {
+  color: var(--color-primary);
+  background-color: #efeefc;
+}

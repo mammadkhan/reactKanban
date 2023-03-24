@@ -3,7 +3,12 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   theme: "dark",
   sideMenuOpen: true,
-  addNewTaskModal: true,
+  addNewTaskModal: false,
+  taskModal: {
+    open: false,
+    taskId: null,
+  },
+  deleteTaskModal: null,
 };
 
 const uiSlice = createSlice({
@@ -19,10 +24,31 @@ const uiSlice = createSlice({
     toggleAddNewTaskModal: (state) => {
       state.addNewTaskModal = !state.addNewTaskModal;
     },
+    toggleTaskModal: (state, action) => {
+      state.taskModal = {
+        open: !state.taskModal.open,
+        taskId: action.payload,
+      };
+    },
+    taskEdit: (state, action) => {
+      state.taskModal = {
+        open: false,
+        taskId: action.payload,
+      };
+    },
+    deleteTaskModal: (state, action) => {
+      state.deleteTaskModal = action.payload;
+    },
   },
 });
 
-export const { setTheme, toggleSideMenu, toggleAddNewTaskModal } =
-  uiSlice.actions;
+export const {
+  setTheme,
+  toggleSideMenu,
+  toggleAddNewTaskModal,
+  toggleTaskModal,
+  taskEdit,
+  deleteTaskModal,
+} = uiSlice.actions;
 
 export default uiSlice.reducer;

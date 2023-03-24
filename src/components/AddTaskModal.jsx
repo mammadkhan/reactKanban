@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import "../styles/AddTaskModal.css";
@@ -7,12 +7,13 @@ import { ReactComponent as Add } from "../assets/add.svg";
 import { ReactComponent as Down } from "../assets/down.svg";
 import { ReactComponent as Close } from "../assets/close.svg";
 import { useSelector, useDispatch } from "react-redux";
-import { addTask } from "../state/board.js";
-import { toggleAddNewTaskModal } from "../state/ui";
+import { addTask, saveTask } from "../state/board.js";
+import { toggleAddNewTaskModal, toggleTaskModal, taskEdit } from "../state/ui";
 
 const AddTaskModal = () => {
   const dispatch = useDispatch();
   const board = useSelector((state) => state.board);
+  const ui = useSelector((state) => state.ui);
 
   const [isOpen, setOpen] = useState(false);
   const [error, setError] = useState({
@@ -33,6 +34,18 @@ const AddTaskModal = () => {
     ],
     status: board.data[board.selected].columns[0].title,
   });
+
+  useEffect(() => {
+    if (ui.taskModal.taskId) {
+      setUserInput(
+        board.data[board.selected].columns
+          .find((column) =>
+            column.tasks.some((task) => task.id === ui.taskModal.taskId)
+          )
+          .tasks.find((task) => task.id === ui.taskModal.taskId)
+      );
+    }
+  }, []);
 
   const handleInputChange = (type, e) => {
     setError((prev) => ({
@@ -60,7 +73,7 @@ const AddTaskModal = () => {
         return "";
       }),
     }));
-    const newSubtasks = { ...userInput };
+    const newSubtasks = JSON.parse(JSON.stringify(userInput));
     newSubtasks.subtasks[index].title = subtaskTitle;
     setUserInput({
       ...userInput,
@@ -123,7 +136,7 @@ const AddTaskModal = () => {
     } else if (
       //check if title exists and subtask is empty
       board.data[board.selected].columns.some((column) =>
-        column.cards.some((card) => card.title === userInput.title)
+        column.tasks.some((card) => card.title === userInput.title)
       ) &&
       userInput.subtasks.some((subtask) => subtask.title.trim() === "")
     ) {
@@ -139,7 +152,7 @@ const AddTaskModal = () => {
       });
     } else if (
       board.data[board.selected].columns.some((column) =>
-        column.cards.some((card) => card.title === userInput.title)
+        column.tasks.some((card) => card.title === userInput.title)
       )
     ) {
       setError((prev) => ({ ...prev, title: "Used" }));
@@ -160,33 +173,69 @@ const AddTaskModal = () => {
       });
     } else {
       dispatch(addTask(userInput));
-      setError({ title: "", subtasks: [""] });
-      setUserInput({
-        id: uuidv4(),
-        title: "",
-        description: "",
-        subtasks: [
-          {
-            id: "797b135a-93c6-4585-8da7-b4d161155c21",
-            title: "",
-            done: false,
-          },
-        ],
-        status: board.data[board.selected].columns[0].title,
-      });
       dispatch(toggleAddNewTaskModal());
     }
   };
 
+  const handleSave = (e) => {
+    e.preventDefault();
+    if (
+      userInput.title.trim() === "" &&
+      userInput.subtasks.some((subtask) => subtask.title.trim() === "")
+    ) {
+      setError((prev) => ({ ...prev, title: "Required" }));
+      userInput.subtasks.forEach((subtask, index) => {
+        if (subtask.title.trim() === "") {
+          setError((prev) => {
+            const newError = [...prev.subtasks];
+            newError[index] = "Required";
+            return { ...prev, subtasks: newError };
+          });
+        }
+      });
+    } else if (userInput.title.trim() === "") {
+      setError((prev) => ({ ...prev, title: "Required" }));
+    } else if (
+      userInput.subtasks.some((subtask) => subtask.title.trim() === "")
+    ) {
+      setError((prev) => ({ ...prev, title: "" }));
+      userInput.subtasks.forEach((subtask, index) => {
+        if (subtask.title.trim() === "") {
+          setError((prev) => {
+            const newError = [...prev.subtasks];
+            newError[index] = "Required";
+            return { ...prev, subtasks: newError };
+          });
+        }
+      });
+    } else {
+      dispatch(saveTask(userInput));
+      dispatch(taskEdit(null));
+    }
+  };
+
   return (
-    <div className="add_task_modal_container">
-      <form className="add_task_modal">
+    <div
+      className="add_task_modal_container"
+      onClick={() => {
+        ui.taskModal.taskId
+          ? dispatch(taskEdit(null))
+          : dispatch(toggleAddNewTaskModal());
+      }}
+    >
+      <form className="add_task_modal" onClick={(e) => e.stopPropagation()}>
         <div className="modal_top">
-          <h3 className="modal_title">Add New Task</h3>
+          <h3 className="modal_title">
+            {ui.taskModal.taskId ? "Edit Task" : "Add New Task"}
+          </h3>
           <button
             type="button"
             className="modal_close"
-            onClick={() => dispatch(toggleAddNewTaskModal())}
+            onClick={() => {
+              ui.taskModal.taskId
+                ? dispatch(taskEdit(null))
+                : dispatch(toggleAddNewTaskModal());
+            }}
           >
             <Close />
           </button>
@@ -232,6 +281,7 @@ const AddTaskModal = () => {
                 onChange={(e) => {
                   handleSubtaskChange(e.target.value, index);
                 }}
+                maxLength={100}
               />
 
               <button
@@ -286,9 +336,11 @@ const AddTaskModal = () => {
         <button
           type="submit"
           className="create_task_button"
-          onClick={(e) => handleSubmit(e)}
+          onClick={(e) => {
+            ui.taskModal.taskId ? handleSave(e) : handleSubmit(e);
+          }}
         >
-          Create Task
+          {ui.taskModal.taskId ? "Save Changes" : "Create Task"}
         </button>
       </form>
     </div>
