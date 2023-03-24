@@ -94,6 +94,9 @@ export const boardSlice = createSlice({
         state.data[state.selected].columns[destinationIndex].title;
       state.data[state.selected].columns[destinationIndex].tasks.push(removed);
     },
+    addNewBoard: (state, action) => {
+      state.data.push(action.payload);
+    },
   },
 });
 
@@ -105,6 +108,7 @@ export const {
   setStatus,
   saveTask,
   deleteTask,
+  addNewBoard,
 } = boardSlice.actions;
 
 export default boardSlice.reducer;

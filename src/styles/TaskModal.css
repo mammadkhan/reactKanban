@@ -34,6 +34,10 @@
   animation: fade 300ms ease-in-out;
 }
 
+.task_modal_title {
+  color: var(--color-title);
+}
+
 .task_modal_top {
   display: flex;
   justify-content: space-between;

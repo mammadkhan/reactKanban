@@ -9,6 +9,7 @@ const initialState = {
     taskId: null,
   },
   deleteTaskModal: null,
+  addNewBoardModal: false,
 };
 
 const uiSlice = createSlice({
@@ -39,6 +40,9 @@ const uiSlice = createSlice({
     deleteTaskModal: (state, action) => {
       state.deleteTaskModal = action.payload;
     },
+    toggleAddNewBoardModal: (state) => {
+      state.addNewBoardModal = !state.addNewBoardModal;
+    },
   },
 });
 
@@ -49,6 +53,7 @@ export const {
   toggleTaskModal,
   taskEdit,
   deleteTaskModal,
+  toggleAddNewBoardModal,
 } = uiSlice.actions;
 
 export default uiSlice.reducer;

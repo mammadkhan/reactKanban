@@ -66,10 +66,7 @@ const TaskModal = () => {
   };
 
   return (
-    <div
-      className="task_modal_container"
-      onClick={() => dispatch(toggleTaskModal(null))}
-    >
+    <div className="task_modal_container" onClick={() => dispatch(toggleTaskModal(null))}>
       <div
         className="task_modal"
         onClick={(e) => {
@@ -77,19 +74,13 @@ const TaskModal = () => {
         }}
       >
         <div className="task_modal_top">
-          <h3>{task.title}</h3>
-          <button
-            className="top_edit_button"
-            onClick={() => setSubmenu(!submenu)}
-          >
+          <h3 className="task_modal_title">{task.title}</h3>
+          <button className="top_edit_button" onClick={() => setSubmenu(!submenu)}>
             <More />
           </button>
           {submenu && (
             <div className="top_edit_submenu">
-              <button
-                className="submenu_button"
-                onClick={() => handleEdit(task.id)}
-              >
+              <button className="submenu_button" onClick={() => handleEdit(task.id)}>
                 Edit task
               </button>
               <button
@@ -105,24 +96,20 @@ const TaskModal = () => {
         <p className="task_modal_description">{task.description}</p>
         <div className="task_modal_subtasks">
           <h3 className="subtasks_title">
-            {`Subtasks (${
-              task.subtasks.filter((subtask) => subtask.done === true).length
-            } of ${task.subtasks.length})`}
+            {`Subtasks (${task.subtasks.filter((subtask) => subtask.done === true).length} of ${
+              task.subtasks.length
+            })`}
           </h3>
           <div className="task_subtasks_container">
             {task.subtasks.map((subtask) => (
               <label
                 key={subtask.id}
-                className={
-                  "subtask_container" + (subtask.done ? " subtask_done" : "")
-                }
+                className={"subtask_container" + (subtask.done ? " subtask_done" : "")}
               >
                 <input
                   type="checkbox"
                   checked={subtask.done}
-                  onChange={() =>
-                    handleSubtaskToggle(subtask.id, task.id, columnInfo.id)
-                  }
+                  onChange={() => handleSubtaskToggle(subtask.id, task.id, columnInfo.id)}
                 />
                 <p>{subtask.title}</p>
               </label>
@@ -131,11 +118,7 @@ const TaskModal = () => {
         </div>
         <div className="status_container">
           <p className="status_title">Status</p>
-          <button
-            type="button"
-            className="status_dropdown"
-            onClick={() => handleDropDown()}
-          >
+          <button type="button" className="status_dropdown" onClick={() => handleDropDown()}>
             {columnInfo.title}
             <Down style={{ width: "20px", height: "20px" }} />
           </button>
@@ -146,9 +129,7 @@ const TaskModal = () => {
                   key={column.id}
                   type="button"
                   className="status_dropdown_container_button"
-                  onClick={() =>
-                    handleStatusChange(task.id, columnInfo.id, column.id)
-                  }
+                  onClick={() => handleStatusChange(task.id, columnInfo.id, column.id)}
                 >
                   {column.title}
                 </button>

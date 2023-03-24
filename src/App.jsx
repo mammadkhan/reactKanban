@@ -9,6 +9,7 @@ import SideMenu from "./components/SideMenu";
 import AddTaskModal from "./components/AddTaskModal";
 import TaskModal from "./components/TaskModal";
 import DeleteTaskModal from "./components/DeleteTaskModal";
+import CreateBoardModal from "./components/CreateBoardModal";
 
 import { ReactComponent as Show } from "./assets/show.svg";
 
@@ -36,6 +37,7 @@ const App = () => {
         <AddTaskModal />
       ) : null}
       {ui.deleteTaskModal && <DeleteTaskModal />}
+      {ui.addNewBoardModal && <CreateBoardModal />}
     </div>
   );
 };
