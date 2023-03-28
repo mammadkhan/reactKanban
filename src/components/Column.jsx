@@ -9,11 +9,11 @@ const Column = ({ column }) => {
   return (
     <div className="column_container">
       <h2 className="column_title">
-        <span
-          className="title_dot"
-          style={{ backgroundColor: column.color }}
-        ></span>
-        {column.title} &#40; {column.tasks.length} &#41;
+        <span className="title_dot" style={{ backgroundColor: column.color }}></span>
+        <span className="column_title_text" title={column.title}>
+          {column.title}
+        </span>{" "}
+        &#40; {column.tasks.length} &#41;
       </h2>
       <Droppable droppableId={column.id}>
         {(provided) => (

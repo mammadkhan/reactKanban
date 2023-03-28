@@ -21,6 +21,12 @@
   padding-bottom: 1rem;
 }
 
+.column_title_text {
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  width: 14rem;
+}
+
 .title_dot {
   width: 0.8rem;
   height: 0.8rem;

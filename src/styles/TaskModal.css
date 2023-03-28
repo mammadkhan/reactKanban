@@ -1,4 +1,5 @@
 .task_modal_container {
+  z-index: 2;
   position: absolute;
   top: 0;
   left: 0;
@@ -71,6 +72,7 @@
   padding: 1rem;
   width: 10rem;
   border-radius: 0.8rem;
+  box-shadow: 0 4px 6px #364e7e1a;
 }
 
 .submenu_button {

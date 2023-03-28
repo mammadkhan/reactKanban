@@ -2,14 +2,17 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   theme: "dark",
+  mobileSideMenu: false,
   sideMenuOpen: true,
+  moreMenu: false,
   addNewTaskModal: false,
-  taskModal: {
-    open: false,
-    taskId: null,
-  },
-  deleteTaskModal: null,
   addNewBoardModal: false,
+  addNewColumnModal: false,
+  taskModal: null,
+  editTaskModal: null,
+  deleteTaskModal: null,
+  deleteBoardModal: null,
+  editBoardModal: null,
 };
 
 const uiSlice = createSlice({
@@ -19,26 +22,35 @@ const uiSlice = createSlice({
     setTheme: (state) => {
       state.theme = state.theme === "dark" ? "light" : "dark";
     },
+    toggleMobileSideMenu: (state) => {
+      state.mobileSideMenu = !state.mobileSideMenu;
+    },
     toggleSideMenu: (state) => {
       state.sideMenuOpen = !state.sideMenuOpen;
     },
     toggleAddNewTaskModal: (state) => {
       state.addNewTaskModal = !state.addNewTaskModal;
     },
-    toggleTaskModal: (state, action) => {
-      state.taskModal = {
-        open: !state.taskModal.open,
-        taskId: action.payload,
-      };
+    toggleAddNewColumnModal: (state) => {
+      state.addNewColumnModal = !state.addNewColumnModal;
     },
-    taskEdit: (state, action) => {
-      state.taskModal = {
-        open: false,
-        taskId: action.payload,
-      };
+    toggleMoreMenu: (state) => {
+      state.moreMenu = !state.moreMenu;
+    },
+    taskModal: (state, action) => {
+      state.taskModal = action.payload;
+    },
+    editTaskModal: (state, action) => {
+      state.editTaskModal = action.payload;
+    },
+    editBoardModal: (state, action) => {
+      state.editBoardModal = action.payload;
     },
     deleteTaskModal: (state, action) => {
       state.deleteTaskModal = action.payload;
+    },
+    deleteBoardModal: (state, action) => {
+      state.deleteBoardModal = action.payload;
     },
     toggleAddNewBoardModal: (state) => {
       state.addNewBoardModal = !state.addNewBoardModal;
@@ -48,11 +60,16 @@ const uiSlice = createSlice({
 
 export const {
   setTheme,
+  toggleMobileSideMenu,
   toggleSideMenu,
   toggleAddNewTaskModal,
-  toggleTaskModal,
-  taskEdit,
+  toggleAddNewColumnModal,
+  toggleMoreMenu,
+  taskModal,
+  editTaskModal,
+  editBoardModal,
   deleteTaskModal,
+  deleteBoardModal,
   toggleAddNewBoardModal,
 } = uiSlice.actions;
 

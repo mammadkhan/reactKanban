@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setStatus, toggleSubtask } from "../state/board";
-import { toggleTaskModal, taskEdit, deleteTaskModal } from "../state/ui";
+import { taskModal, editTaskModal, deleteTaskModal } from "../state/ui";
 
 import "../styles/TaskModal.css";
 
@@ -33,19 +33,20 @@ const TaskModal = () => {
       board.data[board.selected].columns
         .find((column) => {
           setColumnInfo({ id: column.id, title: column.title });
-          return column.tasks.some((task) => task.id === ui.taskModal.taskId);
+          return column.tasks.some((task) => task.id === ui.taskModal);
         })
-        .tasks.find((task) => task.id === ui.taskModal.taskId)
+        .tasks.find((task) => task.id === ui.taskModal)
     );
   }, [isOpen, board]);
 
   const handleEdit = (taskId) => {
-    dispatch(taskEdit(taskId));
+    dispatch(taskModal(null));
+    dispatch(editTaskModal(taskId));
   };
 
   const handleDelete = (taskId) => {
-    dispatch(toggleTaskModal(null));
-    dispatch(deleteTaskModal(task.id));
+    dispatch(taskModal(null));
+    dispatch(deleteTaskModal(taskId));
   };
 
   const handleDropDown = () => {
@@ -66,7 +67,7 @@ const TaskModal = () => {
   };
 
   return (
-    <div className="task_modal_container" onClick={() => dispatch(toggleTaskModal(null))}>
+    <div className="task_modal_container" onClick={() => dispatch(taskModal(null))}>
       <div
         className="task_modal"
         onClick={(e) => {

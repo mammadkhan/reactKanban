@@ -150,12 +150,7 @@ const initialState = {
       ],
     },
   ],
+  selected: 0,
 };
-
-Object.defineProperty(initialState, "selected", {
-  value: 0,
-  writable: true,
-  enumerable: false,
-});
 
 export default initialState;

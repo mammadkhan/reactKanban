@@ -5,8 +5,8 @@ import "../styles/CreateNewBoardModal.css";
 
 import { ReactComponent as Add } from "../assets/add.svg";
 import { ReactComponent as Close } from "../assets/close.svg";
-import { toggleAddNewBoardModal } from "../state/ui";
-import { addNewBoard } from "../state/board";
+import { toggleAddNewBoardModal, editBoardModal } from "../state/ui";
+import { addNewBoard, saveBoard } from "../state/board";
 
 const randomHexColor = () => {
   return "#" + Math.floor(Math.random() * 16777215).toString(16);
@@ -15,6 +15,7 @@ const randomHexColor = () => {
 const CreateBoardModal = () => {
   const dispatch = useDispatch();
   const board = useSelector((state) => state.board);
+  const ui = useSelector((state) => state.ui);
 
   const [newBoard, setNewBoard] = useState({
     id: uuidv4(),
@@ -36,9 +37,14 @@ const CreateBoardModal = () => {
   });
 
   useEffect(() => {
-    console.log(`NewBoard: ${JSON.stringify(newBoard, null, 2)}`);
-    console.log(`Error: ${JSON.stringify(error, null, 2)}`);
-  }, [newBoard, error]);
+    if (ui.editBoardModal) {
+      setNewBoard(board.data[board.selected]);
+      setError({
+        title: "",
+        columns: board.data[board.selected].columns.map((column) => (column = "")),
+      });
+    }
+  }, []);
 
   const handleTitleChange = (e) => {
     setError((prev) => ({
@@ -134,29 +140,59 @@ const CreateBoardModal = () => {
         board.data.some((board) => board.title === newBoard.title) &&
         newBoard.columns.some((column) => column.title.trim() === "")
       ) {
-        const newColumnsError = [...error.columns].map((column, index) => {
-          if (newBoard.columns[index].title.trim() === "") {
-            return "Required";
-          }
-        });
-        setError({
-          title: "Used",
-          columns: newColumnsError,
-        });
-      } else if (board.data.some((board) => board.title === newBoard.title)) {
+        if (
+          ui.editBoardModal &&
+          newBoard.title === board.data.find((board) => board.id === ui.editBoardModal).title
+        ) {
+          const newColumnsError = [...error.columns].map((column, index) => {
+            if (newBoard.columns[index].title.trim() === "") {
+              return "Required";
+            }
+          });
+          setError((prev) => ({
+            ...prev,
+            columns: newColumnsError,
+          }));
+        } else {
+          const newColumnsError = [...error.columns].map((column, index) => {
+            if (newBoard.columns[index].title.trim() === "") {
+              return "Required";
+            }
+          });
+          setError({
+            title: "Used",
+            columns: newColumnsError,
+          });
+        }
+      } else if (
+        ui.editBoardModal
+          ? board.data.some((board) => board.title === newBoard.title) &&
+            newBoard.title !== board.data.find((board) => board.id === ui.editBoardModal).title
+          : board.data.some((board) => board.title === newBoard.title)
+      ) {
         setError((prev) => ({
           ...prev,
           title: "Used",
         }));
       } else {
-        dispatch(addNewBoard(newBoard));
-        dispatch(toggleAddNewBoardModal());
+        if (ui.editBoardModal) {
+          dispatch(saveBoard(newBoard));
+          dispatch(editBoardModal(null));
+        } else {
+          dispatch(addNewBoard(newBoard));
+          dispatch(toggleAddNewBoardModal());
+        }
       }
     }
   };
 
   return (
-    <div className="cbm_container" onClick={() => dispatch(toggleAddNewBoardModal())}>
+    <div
+      className="cbm_container"
+      onClick={() => {
+        ui.editBoardModal ? dispatch(editBoardModal(null)) : dispatch(toggleAddNewBoardModal());
+      }}
+    >
       <form className="cbm" onClick={(e) => e.stopPropagation()}>
         <h3 className="cbm_title">Add New Board</h3>
         <div className="cbm_section_container">
@@ -165,8 +201,10 @@ const CreateBoardModal = () => {
             className={"cbm_input" + (error.title ? " cbm_input_warning" : "")}
             type="text"
             value={newBoard.title}
+            style={ui.addNewColumnModal ? { opacity: "0.2" } : {}}
             onChange={(e) => handleTitleChange(e)}
             maxLength={30}
+            disabled={ui.addNewColumnModal}
           />
           {error.title && <p className="cbm_error cbm_title_error">{error.title}</p>}
         </div>
