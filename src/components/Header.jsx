@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useRef, useCallback } from "react";
+import useClickOutside from "../hooks/useClickOutside";
 import { useSelector, useDispatch } from "react-redux";
 import {
   toggleAddNewTaskModal,
@@ -20,6 +21,10 @@ const Header = () => {
   const board = useSelector((state) => state.board);
   const ui = useSelector((state) => state.ui);
 
+  const ref = useRef();
+
+  useClickOutside(ref, () => dispatch(toggleMoreMenu()));
+
   const handleEdit = (boardId) => {
     dispatch(editBoardModal(boardId));
     dispatch(toggleMoreMenu());
@@ -40,7 +45,9 @@ const Header = () => {
         )}
       </a>
       <div className="header_right">
-        <h1 className="board_title">{board.data[board.selected].title}</h1>
+        <h1 className="board_title" title={board.data[board.selected].title}>
+          {board.data[board.selected].title}
+        </h1>
         <button className="mobile_board_selector" onClick={() => dispatch(toggleMobileSideMenu())}>
           <span className="mobile_board_selector_title">{board.data[board.selected].title}</span>
           <Down />
@@ -56,7 +63,7 @@ const Header = () => {
         </div>
       </div>
       {ui.moreMenu && (
-        <div className="header_submenu">
+        <div className="header_submenu" ref={ref}>
           <button
             className="submenu_button"
             onClick={() => handleEdit(board.data[board.selected].id)}

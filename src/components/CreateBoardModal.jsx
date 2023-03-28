@@ -5,7 +5,7 @@ import "../styles/CreateNewBoardModal.css";
 
 import { ReactComponent as Add } from "../assets/add.svg";
 import { ReactComponent as Close } from "../assets/close.svg";
-import { toggleAddNewBoardModal, editBoardModal } from "../state/ui";
+import { toggleAddNewBoardModal, editBoardModal, toggleAddNewColumnModal } from "../state/ui";
 import { addNewBoard, saveBoard } from "../state/board";
 
 const randomHexColor = () => {
@@ -190,7 +190,11 @@ const CreateBoardModal = () => {
     <div
       className="cbm_container"
       onClick={() => {
-        ui.editBoardModal ? dispatch(editBoardModal(null)) : dispatch(toggleAddNewBoardModal());
+        ui.addNewBoardModal
+          ? dispatch(toggleAddNewBoardModal())
+          : ui.editBoardModal && ui.addNewColumnModal
+          ? (dispatch(editBoardModal(null)), dispatch(toggleAddNewColumnModal()))
+          : dispatch(editBoardModal(null));
       }}
     >
       <form className="cbm" onClick={(e) => e.stopPropagation()}>
