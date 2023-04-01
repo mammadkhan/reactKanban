@@ -18,7 +18,7 @@ const SideMenu = () => {
   const ui = useSelector((state) => state.ui);
 
   const handleAddNewBoard = () => {
-    dispatch(toggleMobileSideMenu());
+    if (size.width < 770) dispatch(toggleMobileSideMenu());
     dispatch(toggleAddNewBoardModal());
   };
 

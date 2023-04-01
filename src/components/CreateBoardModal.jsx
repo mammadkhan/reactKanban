@@ -175,7 +175,11 @@ const CreateBoardModal = () => {
           title: "Used",
         }));
       } else {
-        if (ui.editBoardModal) {
+        if (ui.editBoardModal && ui.addNewColumnModal) {
+          dispatch(saveBoard(newBoard));
+          dispatch(editBoardModal(null));
+          dispatch(toggleAddNewColumnModal());
+        } else if (ui.editBoardModal) {
           dispatch(saveBoard(newBoard));
           dispatch(editBoardModal(null));
         } else {
@@ -238,6 +242,8 @@ const CreateBoardModal = () => {
                     type="button"
                     className="cbm_input_delete_column"
                     onClick={() => handleColumnDelete(index)}
+                    style={ui.addNewColumnModal ? { opacity: "0.2" } : {}}
+                    disabled={ui.addNewColumnModal}
                   >
                     <Close />
                   </button>
