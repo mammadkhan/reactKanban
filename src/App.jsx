@@ -16,10 +16,11 @@ const App = () => {
   const size = useWindowSize();
 
   const ui = useSelector((state) => state.ui);
+  const theme = useSelector((state) => state.theme);
   const board = useSelector((state) => state.board);
 
   return (
-    <div className={"App" + (ui.theme === "dark" ? " dark" : " light")}>
+    <div className={"App" + (theme.theme === "dark" ? " dark" : " light")}>
       <Header />
       {size.width > 770 && <SideMenu />}
       {ui.mobileSideMenu && <SideMenu />}

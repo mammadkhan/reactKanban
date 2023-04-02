@@ -175,13 +175,10 @@ const CreateBoardModal = () => {
           title: "Used",
         }));
       } else {
-        if (ui.editBoardModal && ui.addNewColumnModal) {
+        if (ui.editBoardModal) {
           dispatch(saveBoard(newBoard));
           dispatch(editBoardModal(null));
-          dispatch(toggleAddNewColumnModal());
-        } else if (ui.editBoardModal) {
-          dispatch(saveBoard(newBoard));
-          dispatch(editBoardModal(null));
+          ui.addNewColumnModal && dispatch(toggleAddNewColumnModal());
         } else {
           dispatch(addNewBoard(newBoard));
           dispatch(toggleAddNewBoardModal());

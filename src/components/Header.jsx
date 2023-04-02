@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from "react";
+import React, { useRef } from "react";
 import useClickOutside from "../hooks/useClickOutside";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -20,6 +20,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const board = useSelector((state) => state.board);
   const ui = useSelector((state) => state.ui);
+  const theme = useSelector((state) => state.theme);
 
   const ref = useRef();
 
@@ -38,29 +39,38 @@ const Header = () => {
   return (
     <header className="header">
       <a href="/">
-        {ui.theme === "dark" ? (
+        {theme.theme === "dark" ? (
           <LogoDesktop className="header_logo" />
         ) : (
           <LogoDesktopDark className="header_logo" />
         )}
       </a>
       <div className="header_right">
-        <h1 className="board_title" title={board.data[board.selected].title}>
-          {board.data[board.selected].title}
-        </h1>
+        {board.data.length > 0 ? (
+          <h1 className="board_title" title={board.data[board.selected].title}>
+            {board.data[board.selected].title}
+          </h1>
+        ) : (
+          <h1 className="board_title">No Board Found</h1>
+        )}
+
         <button className="mobile_board_selector" onClick={() => dispatch(toggleMobileSideMenu())}>
-          <span className="mobile_board_selector_title">{board.data[board.selected].title}</span>
+          <span className="mobile_board_selector_title">
+            {board.data.length > 0 ? board.data[board.selected].title : "No Board Found"}
+          </span>
           <Down />
         </button>
-        <div className="header_right_right">
-          <button className="add_new_task" onClick={() => dispatch(toggleAddNewTaskModal())}>
-            <Add className="add_new_task_svg" />
-            <span className="add_new_task_text">Add New Task</span>
-          </button>
-          <button className="more" onClick={() => dispatch(toggleMoreMenu())}>
-            <More style={{ transform: "scale(1.4)", fill: "var(--color-gray)" }} />
-          </button>
-        </div>
+        {board.data.length > 0 && (
+          <div className="header_right_right">
+            <button className="add_new_task" onClick={() => dispatch(toggleAddNewTaskModal())}>
+              <Add className="add_new_task_svg" />
+              <span className="add_new_task_text">Add New Task</span>
+            </button>
+            <button className="more" onClick={() => dispatch(toggleMoreMenu())}>
+              <More style={{ transform: "scale(1.4)", fill: "var(--color-gray)" }} />
+            </button>
+          </div>
+        )}
       </div>
       {ui.moreMenu && (
         <div className="header_submenu" ref={ref}>

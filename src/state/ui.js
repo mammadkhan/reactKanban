@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  theme: "dark",
   mobileSideMenu: false,
   sideMenuOpen: true,
   moreMenu: false,
@@ -19,9 +18,6 @@ const uiSlice = createSlice({
   name: "ui",
   initialState,
   reducers: {
-    setTheme: (state) => {
-      state.theme = state.theme === "dark" ? "light" : "dark";
-    },
     toggleMobileSideMenu: (state) => {
       state.mobileSideMenu = !state.mobileSideMenu;
     },
@@ -59,7 +55,6 @@ const uiSlice = createSlice({
 });
 
 export const {
-  setTheme,
   toggleMobileSideMenu,
   toggleSideMenu,
   toggleAddNewTaskModal,
